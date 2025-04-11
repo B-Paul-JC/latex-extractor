@@ -25,13 +25,10 @@ export const UploadSection: React.FC<UploadSectionProps> = ({
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await fetch(
-        "http://converter.test/converter/server.php",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch("https://extr-srvr.onrender.com:3000", {
+        method: "POST",
+        body: formData,
+      });
 
       if (!response.ok)
         throw new Error("Server error: " + (await response.text()));
