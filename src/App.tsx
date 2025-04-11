@@ -1,6 +1,6 @@
 import FileConverterModal from "./components/FileConverterModal";
 
-export const Welcome = () => {
+export const App = () => {
   return (
     <div className="App">
       <FileConverterModal />
