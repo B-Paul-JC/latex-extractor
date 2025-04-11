@@ -6,7 +6,7 @@ import { LoadingBlocks } from "./LoadingBlocks";
 
 interface UploadSectionProps {
   onFileConverted: (url: string | null, fileName?: string) => void;
-  setFileName: (url: string | null, fileName?: string) => void;
+  setFileName: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 export const UploadSection: React.FC<UploadSectionProps> = ({
