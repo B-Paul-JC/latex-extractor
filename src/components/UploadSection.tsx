@@ -26,7 +26,7 @@ export const UploadSection: React.FC<UploadSectionProps> = ({
       formData.append("file", file);
 
       const response = await fetch(
-        "https://extr-srvr.onrender.com:3000/convert",
+        "https://extr-srvr.onrender.com:10000/convert",
         {
           method: "POST",
           body: formData,
