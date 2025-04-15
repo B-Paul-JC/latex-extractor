@@ -17,10 +17,16 @@ export const UploadSection: React.FC<UploadSectionProps> = ({
   const [blockHeights, setBlockHeights] = useState<number[]>([20, 20, 20, 20]);
   const [isComplete, setIsComplete] = useState<boolean>(false);
   const [convertTrigger, setConvertTrigger] = useState<number>(0);
+  const [type, setType] = useState<string>("");
 
   const uploadFileToServer = async () => {
     if (convertTrigger) {
-      if (!file) throw new Error("No file selected");
+      if (!file) throw new Error("No file selected!");
+      if (
+        type !=
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      )
+        throw new Error("Wrong format! (.docx only)");
 
       const formData = new FormData();
       formData.append("file", file);
@@ -47,8 +53,11 @@ export const UploadSection: React.FC<UploadSectionProps> = ({
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
+      const { name, type } = e.target.files[0];
+
+      setType(type);
       setFile(e.target.files[0]);
-      setFileName(e.target.files[0].name.replace(/\.[^/.]+$/, ".txt"));
+      setFileName(name.replace(/\.[^/.]+$/, ".txt"));
       setIsComplete(false);
       setBlockHeights([20, 20, 20, 20]);
       setConvertTrigger(0);
